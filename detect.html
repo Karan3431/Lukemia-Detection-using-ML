@@ -1,243 +1,332 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bone Fracture Detection</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    <title>Leukemia Detection Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #3a3a74;
-            color: #333;
+        .detect-section {
+            padding-top: 0; /* Removed local offset */
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        .detect-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .detect-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+            padding-top: 2rem;
+        }
+
+        .detect-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .detect-card {
+            background: var(--background);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .upload-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .dropzone {
+            flex: 1;
+            border: 2px dashed var(--accent);
+            border-radius: 15px;
+            padding: 1.5rem;  /* Reduced padding */
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--gray-light);
+        }
+
+        .dropzone:hover {
+            border-color: var(--primary);
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .dropzone-icon {
+            font-size: 2rem;  /* Reduced icon size */
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .dropzone h3 {
+            font-size: 1rem;  /* Reduced text size */
+            margin-bottom: 0.25rem;
+        }
+
+        .dropzone p {
+            font-size: 0.9rem;
             margin: 0;
-            padding: 0;
         }
-        .center-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            width: 100%;
-            padding-top: 60px; 
-            box-sizing: border-box;
-            background-color: #cba5a5; 
-            overflow-y: auto; 
+
+        .results-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
         }
-        
-        
-        #uploadContainer {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #d7cccc;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 90px;
-            align-items: center;
-        }
-        
-        .header-section {
+
+        .result-card {
+            background: var(--gray-light);
+            padding: 1.5rem;
+            border-radius: 15px;
             text-align: center;
-            margin-bottom: 20px;
         }
-        
-        .header-section h1 {
-            font-size: 24px;
-            color: #312062;
-        }
-        
-        .upload-section {
-            text-align: center;
-            margin: 20px 0;
-        }
-        
-        .custom-file-upload {
-            background-color: #312062;
-            color: white;
-            padding: 10px 30px;
+
+        .result-card img {
+            max-width: 100%;
             border-radius: 10px;
-            cursor: pointer;
-            font-size: larger;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        
-        .custom-file-upload:hover {
-            background-color: #48445b;
+
+        .result-title {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
         }
-        
-        button {
-            background-color: #4f3eb5;
-            color: white;
-            padding: 10px 30px;
-            cursor: pointer;
+
+        .result-info {
+            background: white;
+            padding: 1rem;
             border-radius: 10px;
-            margin-left: 10px;
-            font-size: larger;
+            margin-top: 1rem;
         }
-        
-        button:hover {
-            background-color: #312062;
+
+        .detect-btn {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: auto;  /* Changed from 100% */
+            padding: 1rem 2rem;
+            height: 100%;  /* Match height with dropzone */
+            white-space: nowrap;  /* Prevent text wrapping */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
-        .image-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 20px 0;
+
+        .detect-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-        
-        .image-wrapper {
-            text-align: center;
-            margin: 10px;
-        }
-        
-        .image-wrapper img {
-            max-width: 20%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .image-label {
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        
-        .progress-text {
-            text-align: center;
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #312062;
-        }
-        
-        #progressBar {
-            width: 100%;
-            height: 10px;
-            background-color: #eaeaea;
-            border-radius: 5px;
+
+        .progress-bar {
+            height: 6px;
+            background: var(--gray-light);
+            border-radius: 3px;
+            margin: 1rem 0;
             overflow: hidden;
         }
-        
-        #progressBar div {
+
+        .progress-fill {
             height: 100%;
-            background-color: #473a8e;
-            width: 0;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
             transition: width 0.3s ease;
         }
 
-        nav {
-            background-color: #312062;
-            padding: 20px;
-            text-align:justify;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-        nav a.spaced-link {
-            margin-right: 600px; 
-            margin-left: 100px;
-            font-size: x-large;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        }
-
-        nav a {
-            color: white;
-            margin: 0 30px;
-            text-decoration: none;
-            font-size: 1.2rem;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
         @media (max-width: 768px) {
-            nav {
-                padding: 0.8rem 1rem;
-            }
-            
-            nav a {
-                padding: 0.4rem 0.8rem;
-                font-size: var(--font-xs);
-                margin: 0 0.3rem;
-            }
-
-            .image-wrapper {
-                max-width: 100%;
-            }
-
-            .image-container img {
-                height: 300px;
+            .results-container {
+                grid-template-columns: 1fr;
             }
         }
 
-        .image-wrapper img {
-            opacity: 0;
-            transition: opacity 0.5s ease;
+        /* New modern progress bar styles */
+        .progress-container {
+            display: none;
+            margin: 2rem 0;
+            text-align: center;
         }
 
-        .image-wrapper img.loaded {
-            opacity: 1;
+        .modern-progress {
+            width: 100%;
+            height: 8px;
+            background: var(--gray-light);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
         }
 
-        html {
-            scroll-behavior: smooth;
+        .progress-fill {
+            position: absolute;
+            height: 100%;
+            background: linear-gradient(90deg, #4f46e5, #60a5fa);
+            border-radius: 20px;
+            transition: width 1.5s ease;
+            width: 0;
+        }
+
+        .progress-status {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-text {
+            color: var(--text);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .progress-percentage {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .progress-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(79, 70, 229, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Update spinner styles */
+        .circular-spinner {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gray-light);
+            border-radius: 15px;
+        }
+
+        .spinner {
+            width: 80px;
+            height: 80px;
+            border: 8px solid var(--gray-light);
+            border-top: 8px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .spinner-text {
+            position: absolute;
+            bottom: 20px;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .processing-card {
+            background: var(--gray-light);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        /* Hide old progress bar */
+        .progress-container {
+            display: none;
         }
     </style>
 </head>
-
 <body>
-    <nav>
-        <a href="index.html" class="spaced-link">Lukemia Detection</a>
-        <a href="about.html">About</a>
-        <a href="detect.html">Detect</a>
-        <a href="team.html">Team</a>
-        <a href="contact.html">Contact Us</a>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/icons/microscope.svg" alt="Microscope" class="logo-icon">
+                LeukemiaDetect
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="detect.html" class="active">Detection</a>
+                <a href="team.html">Team</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
     </nav>
-    <div class="center-container">
-        <div id="uploadContainer">
-            <div class="header-section">
-                <h1>Leukemia Detection</h1>
-                <p class="description">
-                    Upload a blood smear image to detect leukemia using our AI-powered detection system. The results will show potential abnormalities and insights.
-                </p>
+
+    <section class="detect-section">
+        <div class="detect-container">
+            <div class="detect-header">
+                <h1>AI-Powered Leukemia Detection</h1>
+                <p>Upload a blood smear image for instant analysis</p>
             </div>
-        
-            <div class="upload-section">
-                <div class="action-buttons">
-                    <label for="imageUpload" class="custom-file-upload">Image</label>
-                    <input type="file" id="imageUpload" accept="image/*" onchange="previewImage()" style="display: none;">
-                    <button onclick="uploadImage()">Detect</button>
+
+            <div class="detect-card">
+                <div class="upload-controls">
+                    <div class="dropzone" onclick="document.getElementById('imageUpload').click()">
+                        <i class="fas fa-cloud-upload-alt dropzone-icon"></i>
+                        <h3>Drop your image here</h3>
+                        <p>or click to browse</p>
+                        <input type="file" id="imageUpload" accept="image/*" style="display: none;" onchange="previewImage()">
+                    </div>
+                    
+                    <button class="detect-btn" onclick="uploadImage()">
+                        <i class="fas fa-microscope"></i> Analyze Image
+                    </button>
                 </div>
-            </div>
-        
-            <div class="image-container" id="imageContainer"></div>
-        
-            <div class="result-section">
-                <div id="progressBarContainer" style="display: none;">
-                    <div class="progress-text">Analyzing image...</div>
-                    <div id="progressBar">
-                        <div></div>
+
+                <div class="progress-container" id="progressContainer">
+                    <div class="modern-progress">
+                        <div class="progress-fill" id="progressBar"></div>
+                    </div>
+                    <div class="progress-status">
+                        <div class="progress-text">
+                            <div class="progress-spinner"></div>
+                            <span id="progressText">Processing image...</span>
+                        </div>
+                        <div class="progress-percentage" id="progressPercentage">0%</div>
                     </div>
                 </div>
-                <div id="result"></div>
-            </div>
-        </div>    
 
-    </div>
+                <div class="results-container" id="resultsContainer"></div>
+            </div>
+        </div>
+    </section>
+
     <script>
+        // Add this helper function at the top of your script section
+        function scrollToResults() {
+            const resultsContainer = document.getElementById('resultsContainer');
+            resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
         function previewImage() {
             const input = document.getElementById('imageUpload');
-            const imageContainer = document.getElementById('imageContainer');
-            imageContainer.innerHTML = '';
+            const resultsContainer = document.getElementById('resultsContainer');
+            resultsContainer.innerHTML = '';
     
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
                     const wrapper = document.createElement('div');
-                    wrapper.className = 'image-wrapper';
+                    wrapper.className = 'result-card';
     
                     const img = document.createElement('img');
                     img.src = e.target.result;
@@ -246,12 +335,12 @@
                     img.onload = () => img.classList.add('loaded');
     
                     const label = document.createElement('div');
-                    label.className = 'image-label';
+                    label.className = 'result-title';
                     label.textContent = 'Original Image';
     
                     wrapper.appendChild(img);
                     wrapper.appendChild(label);
-                    imageContainer.appendChild(wrapper);
+                    resultsContainer.appendChild(wrapper);
                 };
                 reader.readAsDataURL(input.files[0]);
             }
@@ -259,100 +348,142 @@
     
         async function uploadImage() {
             const input = document.getElementById('imageUpload');
-            const imageContainer = document.getElementById('imageContainer');
-            const result = document.getElementById('result');
-            const progressBarContainer = document.getElementById('progressBarContainer');
-            const progressBar = progressBarContainer.querySelector('#progressBar div');
-    
+            const resultsContainer = document.getElementById('resultsContainer');
+
             if (!input.files.length) {
-                result.textContent = 'Please upload an image first.';
+                alert('Please select an image first.');
                 return;
             }
-    
-            const formData = new FormData();
-            formData.append('file', input.files[0]);
-    
-            result.innerHTML = '';
-            progressBarContainer.style.display = 'block';
-            progressBar.style.width = '0%';
-    
-            progressBarContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    
+
             try {
-                await animateProgress(progressBar, 0, 30);
-    
-                const response = await fetch('http://localhost:8000/detect', {
+                // Create processing placeholder
+                const processingCard = document.createElement('div');
+                processingCard.className = 'processing-card';
+                processingCard.innerHTML = `
+                    <div class="circular-spinner">
+                        <div class="spinner"></div>
+                        <div class="spinner-text">Processing image...</div>
+                    </div>
+                `;
+
+                // Keep original image and add processing placeholder
+                if (resultsContainer.children.length > 0) {
+                    // Keep the first child (original image) and replace the second child
+                    if (resultsContainer.children.length > 1) {
+                        resultsContainer.removeChild(resultsContainer.children[1]);
+                    }
+                    resultsContainer.appendChild(processingCard);
+                } else {
+                    // If no children, add both original preview and processing placeholder
+                    previewImage();
+                    resultsContainer.appendChild(processingCard);
+                }
+
+                // Add scroll after adding processing card
+                setTimeout(() => scrollToResults(), 100);
+
+                const formData = new FormData();
+                formData.append('file', input.files[0]);
+
+                const response = await fetch('http://127.0.0.1:5000/detect', {
                     method: 'POST',
                     body: formData
                 });
-    
-                await animateProgress(progressBar, 30, 60);
-    
+
                 if (!response.ok) {
-                    throw new Error('Error processing image');
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
-    
-                const blob = await response.blob();
-                const imageUrl = URL.createObjectURL(blob);
-    
-                await animateProgress(progressBar, 60, 90);
-    
-                const img = new Image();
-                img.src = imageUrl;
-    
-                await new Promise((resolve) => {
-                    img.onload = resolve;
+
+                const data = await response.json();
+
+                // Add minimum processing time of 2 seconds
+                await new Promise(resolve => {
+                    setTimeout(() => {
+                        // Update spinner text during delay
+                        const spinnerText = processingCard.querySelector('.spinner-text');
+                        spinnerText.textContent = 'Analyzing results...';
+                        resolve();
+                    }, 1500);
                 });
-    
-                await animateProgress(progressBar, 90, 100);
-    
-                const wrapper = document.createElement('div');
-                wrapper.className = 'image-wrapper';
-    
-                img.alt = 'Detection Result';
-                img.classList.add('loaded');
-    
-                const label = document.createElement('div');
-                label.className = 'image-label';
-                label.textContent = 'Detection Result';
-    
-                wrapper.appendChild(img);
-                wrapper.appendChild(label);
-    
-                if (imageContainer.children.length > 1) {
-                    imageContainer.removeChild(imageContainer.lastChild);
-                }
-    
+
+                // Add additional delay with different message
+                await new Promise(resolve => {
+                    setTimeout(() => {
+                        const spinnerText = processingCard.querySelector('.spinner-text');
+                        spinnerText.textContent = 'Preparing visualization...';
+                        resolve();
+                    }, 1000);
+                });
+
+                // Final delay before showing results
                 await new Promise(resolve => setTimeout(resolve, 500));
-                imageContainer.appendChild(wrapper);
-    
-                await new Promise(resolve => setTimeout(resolve, 300));
-                progressBarContainer.style.opacity = '0';
-                await new Promise(resolve => setTimeout(resolve, 300));
-                progressBarContainer.style.display = 'none';
-                progressBarContainer.style.opacity = '1';
-    
-                result.textContent = 'Analysis complete!';
-    
+
+                // Replace processing placeholder with result
+                const resultCard = document.createElement('div');
+                resultCard.className = 'result-card';
+                resultCard.style.opacity = '0'; // Start with opacity 0 for fade in effect
+                resultCard.innerHTML = `
+                    <img src="${data.result_image}" alt="Detection Result">
+                    <div class="result-title">Detection Result</div>
+                `;
+
+                // Replace the processing card and fade in the result
+                resultsContainer.replaceChild(resultCard, processingCard);
+                requestAnimationFrame(() => {
+                    resultCard.style.transition = 'opacity 0.5s ease';
+                    resultCard.style.opacity = '1';
+                });
+
+                // After showing results, ensure we're still scrolled to the right position
+                setTimeout(() => scrollToResults(), 500);
+
             } catch (error) {
-                result.textContent = `Error: ${error.message}`;
-                progressBarContainer.style.display = 'none';
+                console.error('Error:', error);
+                // Add delay before showing error
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                const errorCard = document.createElement('div');
+                errorCard.className = 'result-card';
+                errorCard.innerHTML = `
+                    <div class="error">Error: ${error.message}</div>
+                `;
+                
+                if (resultsContainer.children.length > 1) {
+                    resultsContainer.replaceChild(errorCard, resultsContainer.children[1]);
+                } else {
+                    resultsContainer.appendChild(errorCard);
+                }
+
+                // Add scroll even in case of error
+                setTimeout(() => scrollToResults(), 100);
             }
         }
-    
-        async function animateProgress(progressBar, start, end) {
-            const duration = 500;
-            const steps = 20;
-            const increment = (end - start) / steps;
-            const stepDuration = duration / steps;
-    
-            for (let i = 0; i <= steps; i++) {
-                const progress = start + (increment * i);
-                progressBar.style.width = `${progress}%`;
-                await new Promise(resolve => setTimeout(resolve, stepDuration));
+
+        // Update previewImage to always show in the first position
+        function previewImage() {
+            const input = document.getElementById('imageUpload');
+            const resultsContainer = document.getElementById('resultsContainer');
+            
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'result-card';
+                    wrapper.innerHTML = `
+                        <img src="${e.target.result}" alt="Uploaded Image">
+                        <div class="result-title">Original Image</div>
+                    `;
+                    
+                    // Replace existing preview or add new one
+                    if (resultsContainer.children.length > 0) {
+                        resultsContainer.replaceChild(wrapper, resultsContainer.children[0]);
+                    } else {
+                        resultsContainer.appendChild(wrapper);
+                    }
+                };
+                reader.readAsDataURL(input.files[0]);
             }
         }
     </script>
 </body>
-
 </html>

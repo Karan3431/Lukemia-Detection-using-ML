@@ -1,428 +1,677 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AI-powered leukemia detection system providing fast, accurate, and secure diagnosis.">
-    <meta name="keywords" content="Leukemia Detection, AI Diagnosis, Cancer Detection, Medical AI">
-    <meta name="author" content="Your Name">
     <title>AI-Powered Leukemia Detection</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
     <style>
         :root {
-            --primary-color: #004aad;
-            --secondary-color: #02063c;
-            --background-color: #f5f7fb;
-            --text-color: #333;
-            --light-text-color: #666;
-            --card-shadow: rgba(0, 0, 0, 0.1);
-            --white: #fff;
-            --font-primary: 'Inter', sans-serif;
-            --font-heading: 'Playfair Display', serif;
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #60a5fa;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --background: #ffffff;
+            --gray-light: #f3f4f6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            font-family: var(--font-primary);
-            margin: 0;
-            padding: 0;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            min-height: 100vh;
+            padding: 120px 0 80px; /* Increased padding-top to account for navbar and increased bottom padding */
+            overflow: visible; /* Changed from hidden to visible */
+            position: relative;
+            z-index: 1;
         }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        nav {
-            background-color: #312062;
-            padding: 20px;
-            text-align:justify;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-        nav a.spaced-link {
-            margin-right: 600px; 
-            margin-left: 100px;
-            font-size: x-large;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            font-weight:550;
-        }
-
-        nav a {
-            color: white;
-            margin: 0 30px;
-            text-decoration: none;
-            font-size: 1.2rem;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        .hero-section {
-            background: linear-gradient(to bottom, rgba(0, 74, 173, 0.8), rgba(0, 74, 173, 0.5)), url('hero-image.jpg');
-            background-size: cover;
-            background-position: center;
-            color: #fff;
-            padding: 12rem 2rem;
-            text-align: center;
-            animation: fadeIn 2s ease;
-        }
-
-        .hero-section h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 1rem;
-            font-family: var(--font-heading);
-            animation: slideUp 1.5s ease;
-        }
-
-        .hero-section p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-            font-weight: 400;
-            font-family: var(--font-primary);
-            animation: slideUp 2s ease;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .primary-button {
-            background-color: var(--secondary-color);
-            color: #fff;
-            padding: 1rem 3rem;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            font-family: var(--font-primary);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .primary-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .secondary-button {
-            background-color: #fff;
-            border: 2px solid var(--secondary-color);
-            color: var(--secondary-color);
-            padding: 1rem 3rem;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            font-family: var(--font-primary);
-            transition: all 0.3s ease;
-        }
-
-        .secondary-button:hover {
-            background-color: var(--secondary-color);
-            color: #fff;
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-        .hero-logo {
-            margin-top: 30px;
-            width: 200px;
-
-        }
-        
-        .about {
-            text-align: center;
-            padding: 40px 20px;
-        }
-        
-        .footer {
-            background-color: #4682b4;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-        }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideUp {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-            }
-
-            .hero-section h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-section p {
-                font-size: 1rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-        .leaf {
+        .hero::before {
+            content: '';
             position: absolute;
-            width: 50px;
-            height: 80px;
-            background: 
-              linear-gradient(to right, #3fa236, #2980b9),
-              linear-gradient(to right, #2980b9, #34495e);
-            clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
-            animation: leafFall 5s linear infinite;
-          }
-          
-          @keyframes leafFall {
-            0% {
-              top: -80px;
-              left: 0;
-              transform: rotate(0deg);
-            }
-            100% {
-              top: 100%;
-              left: 100%;
-              transform: rotate(360deg);
-            }
-          }
-          .features-preview {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 2rem;
+            width: 100%;
+            height: 100%;
+            background: url('assets/patterns/hero-pattern.svg');
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -5%; /* Adjusted from -10% to -5% */
+            left: 0;
+            width: 100%;
+            height: 15%; /* Reduced from 20% to 15% */
+            background: linear-gradient(to top, var(--background) 0%, transparent 100%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .hero-content {
             max-width: 1400px;
             margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: flex-start; /* Changed from center to flex-start */
+            position: relative;
+            z-index: 3;
+            padding-bottom: 40px; /* Added padding at the bottom */
         }
 
-        .feature-card {
-            background: rgba(195, 198, 237, 0.95);
+        .hero-text {
+            color: white;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0.8));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-image {
+            position: relative;
+            padding-bottom: 20px; /* Added padding to prevent cutoff */
+            max-height: 400px; /* Added max-height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-image {
+            width: 80%; /* Reduced from 100% */
+            height: auto;
+            max-height: 350px; /* Added max-height constraint */
+            object-fit: contain;
+            border-radius: 0; /* Removed border-radius */
+            box-shadow: none; /* Removed box shadow */
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15)); /* Added drop-shadow instead */
+            animation: floatImage 6s ease-in-out infinite;
+            margin-bottom: 20px; /* Added margin at the bottom */
+        }
+
+        @keyframes floatImage {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
+            }
+            50% {
+                transform: translateY(-20px) rotate(2deg);
+                filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.2));
+            }
+        }
+
+        .stats-section {
+            background: white;
+            padding: 4rem 0;
+            margin-top: -2rem; /* Reduced from -8rem to -2rem */
+            padding-top: 2rem; /* Reduced from 8rem to 2rem */
+            position: relative;
+            z-index: 4;
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            padding: 0 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
-            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .stat-card {
             text-align: center;
-            transition: all 0.3s ease;
+            padding: 2rem;
+            background: var(--gray-light);
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .features-section {
+            padding: 6rem 0 4rem; /* Reduced padding */
+            margin: 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
             position: relative;
             overflow: hidden;
-            opacity: 0;
-            transform: translateY(20px);
         }
-        .feature-card::before {
+
+        .features-section::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
+            height: 100%;
+            background: url('assets/patterns/dna-pattern.svg');
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem; /* Reduced from 3rem */
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem; /* Reduce gap between feature cards */
+            padding: 0 2rem;
+            margin-bottom: 2rem; /* Add bottom margin */
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--card-shadow);
         }
 
-
-        .feature-card:hover::before {
-            transform: scaleX(1);
-        }
         .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            border-radius: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 2rem;
-            font-size: 2.5rem;
-            color: rgb(53, 80, 149);
-            transition: all 0.3s ease;
+            margin-bottom: 2rem;
         }
 
-        .feature-card:hover .feature-icon {
-            transform: rotateY(180deg);
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes float {
+            0%, 100% {
                 transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
             }
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 2.75rem;
+            }
+
+            .hero {
+                padding: 100px 0 60px;
+            }
+
+            .stats-section {
+                margin-top: -1rem;
+                padding-top: 1rem;
+            }
+
+            .section-title {
+                margin-bottom: 2rem;
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+
+            .features-section,
+            .process-section,
+            .testimonials-section {
+                padding: 3rem 0; /* Further reduced padding for mobile */
+            }
+
+            .section-title {
+                margin-bottom: 2rem;
+            }
+
+            .hero-image {
+                max-height: 300px; /* Reduced for mobile */
+            }
+
+            .floating-image {
+                max-height: 250px; /* Reduced for mobile */
+            }
+        }
+
+        /* Slide-in animations */
+        .slide-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .slide-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* New sections */
+        .process-section {
+            padding: 4rem 0; /* Reduced padding */
+            margin: 0;
+            background: var(--background);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem; /* Consistent gap for process steps */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            margin-bottom: 2rem; /* Add bottom margin */
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gray-light);
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            z-index: 2;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+        }
+
+        .testimonials-section {
+            padding: 4rem 0; /* Reduced padding */
+            margin: 0; /* Remove any default margin */
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('assets/patterns/dots-pattern.svg');
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .testimonial-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem; /* Consistent gap for testimonials */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .quote-icon {
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Add animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            animation: slideInRight 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-content h2 {
-                font-size: 1.5rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-            
-            .hero-section {
-                padding: 3rem 1rem;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
-          
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        
+        /* Update content spacing */
+        .section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
     </style>
 </head>
-
 <body>
-
-    <nav>
-        <a href="index.html" class="spaced-link">Lukemia Detection</a>
-        <a href="about.html">About</a>
-        <a href="detect.html">Detect</a>
-        <a href="team.html">Team</a>
-        <a href="contact.html">Contact Us</a>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <img src="assets/icons/microscope.svg" alt="Microscope" class="logo-icon">
+                LeukemiaDetect
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html">About</a>
+                <a href="detect.html">Detection</a>
+                <a href="team.html">Team</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
     </nav>
 
-
-    <div class="hero-section" id="home">
-        <img src="images/Cncerlogo.jpg" alt="Cancer Logo" class="hero-logo">
-
+    <section class="hero">
         <div class="hero-content">
-            <h1 class="title animate-text">AI-Powered Leukemia Detection</h1>
-            <p class="description">Discover the future of medical diagnostics with advanced AI technology.</p>
-            <p class="description">Early detection and right treatment and save life</p>
-
-            <div class="cta-buttons">
-                <a href="features.html" class="primary-button" onclick="showFeatures()">Explore Features  <i class="fas fa-arrow-right"></i></a>
-                <a href="learn-more.html" class="secondary-button">Learn More</a>
+            <div class="hero-text slide-in-left">
+                <h1>AI-Powered Leukemia Detection</h1>
+                <p class="delay-1">Revolutionizing blood cancer diagnosis with cutting-edge artificial intelligence and machine learning technology.</p>
+                <a href="detect.html" class="cta-button delay-2">Start Detection</a>
+            </div>
+            <div class="hero-image slide-in-right delay-1">
+                <img src="assets/microscope-analysis.png" alt="AI Analysis" class="floating-image">
             </div>
         </div>
-    </div>
-
-    <section class="about">
-        <h2>About Our Tool</h2>
-        <p>Our Leukemia Detection Tool uses state-of-the-art machine learning algorithms to analyze blood smear images and provide highly accurate results for early diagnosis. Early detection can save lives!</p>
     </section>
 
-    
-
-    <div class="features-preview">
-        <div class="feature-card">
-            <div class="feature-icon">
-                <i class="fas fa-bolt"></i>
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-card fade-in delay-1">
+                <div class="stat-number">99.8%</div>
+                <div class="stat-label">Accuracy Rate</div>
             </div>
-            <h3>Lightning Fast</h3>
-            <p>Get results in seconds with our optimized AI processing pipeline</p>
-        </div>
-
-        <div class="feature-card">
-            <div class="feature-icon">
-                <i class="fas fa-chart-line"></i>
+            <div class="stat-card fade-in delay-2">
+                <div class="stat-number">2.5s</div>
+                <div class="stat-label">Processing Time</div>
             </div>
-            <h3>99.8% Accuracy</h3>
-            <p>Industry-leading precision powered by YOLOv8 technology</p>
-        </div>
-
-        <div class="feature-card">
-            <div class="feature-icon">
-                <i class="fas fa-shield-alt"></i>
+            <div class="stat-card fade-in delay-3">
+                <div class="stat-number">50K+</div>
+                <div class="stat-label">Analyses Completed</div>
             </div>
-            <h3>Secure & Reliable</h3>
-            <p>Enterprise-grade security with end-to-end encryption</p>
+            <div class="stat-card fade-in delay-4">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Support Available</div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <section class="features-section" id="features">
+        <div class="section-content">
+            <div class="section-title fade-in">
+                <h2>Why Choose Us</h2>
+                <p>Advanced features for accurate diagnosis</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in delay-1">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Advanced AI</h3>
+                    <p>State-of-the-art neural networks trained on extensive medical datasets.</p>
+                </div>
+                <div class="feature-card fade-in delay-2">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Real-time Analysis</h3>
+                    <p>Get instant results with our optimized processing pipeline.</p>
+                </div>
+                <div class="feature-card fade-in delay-3">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure & Private</h3>
+                    <p>Your data is protected with enterprise-grade security measures.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section">
+        <div class="section-content">
+            <div class="section-title slide-in">
+                <h2>How It Works</h2>
+                <p>Simple 4-step process for accurate detection</p>
+            </div>
+            <div class="process-steps">
+                <div class="step-card slide-in">
+                    <div class="step-number">1</div>
+                    <h3>Upload Image</h3>
+                    <p>Upload your blood smear image</p>
+                </div>
+                <div class="step-card slide-in">
+                    <div class="step-number">2</div>
+                    <h3>AI Analysis</h3>
+                    <p>Our AI processes the image</p>
+                </div>
+                <div class="step-card slide-in">
+                    <div class="step-number">3</div>
+                    <h3>Detection</h3>
+                    <p>Advanced algorithms detect abnormalities</p>
+                </div>
+                <div class="step-card slide-in">
+                    <div class="step-number">4</div>
+                    <h3>Results</h3>
+                    <p>Get detailed analysis report</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="section-content">
+            <div class="section-title fade-in">
+                <h2>What Medical Professionals Say</h2>
+                <p>Trusted by healthcare providers worldwide</p>
+            </div>
+            <div class="testimonial-cards">
+                <div class="testimonial-card fade-in delay-1">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p>"Revolutionary tool for early detection. Significantly improved our diagnostic accuracy."</p>
+                    <h4>Dr. Sarah Johnson</h4>
+                    <p>Hematology Specialist</p>
+                </div>
+                <div class="testimonial-card fade-in delay-2">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p>"The speed and accuracy of this system has transformed our workflow."</p>
+                    <h4>Dr. Michael Chen</h4>
+                    <p>Oncologist</p>
+                </div>
+                <div class="testimonial-card fade-in delay-3">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p>"An invaluable tool for modern healthcare facilities."</p>
+                    <h4>Dr. Emma Thompson</h4>
+                    <p>Medical Director</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <script>
-        const observer = new IntersectionObserver((entries) => {
+        // Replace all existing script content with this optimized version
+        // Unified observer configuration
+        const observerConfig = {
+            threshold: 0.2,
+            rootMargin: '0px'
+        };
+
+        // Single observer instance for all animations
+        const animationObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    // Handle both class-based and style-based animations
+                    if (entry.target.classList.contains('slide-in')) {
+                        entry.target.classList.add('active');
+                    } else {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                    // Unobserve after animation starts
+                    animationObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 });
+        }, observerConfig);
 
-        document.querySelectorAll('.feature-card').forEach(card => {
-            observer.observe(card);
+        // Initialize smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Observe all animated elements
+            const animatedElements = document.querySelectorAll(
+                '.slide-in, .fade-in, .slide-in-left, .slide-in-right'
+            );
+            
+            animatedElements.forEach(el => {
+                el.style.animationPlayState = 'paused';
+                animationObserver.observe(el);
+            });
         });
     </script>
-
-    
-
-    <footer class="footer">
-        <p>© 2025 Leukemia Detection Tool | Powered by AI</p>
-    </footer>
-
-    <script src="scripts.js"></script>
-    <div class="leaf"></div>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-
-
-    
 </body>
-
 </html>

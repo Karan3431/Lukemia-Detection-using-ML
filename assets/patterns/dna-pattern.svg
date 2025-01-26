@@ -1,0 +1,15 @@
+<svg width="100" height="200" viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="dna" x="0" y="0" width="100" height="200" patternUnits="userSpaceOnUse">
+      <!-- DNA Helix -->
+      <path d="M10,0 Q50,50 90,100 Q50,150 10,200" stroke="currentColor" fill="none" opacity="0.1" stroke-width="2"/>
+      <path d="M90,0 Q50,50 10,100 Q50,150 90,200" stroke="currentColor" fill="none" opacity="0.1" stroke-width="2"/>
+      <!-- DNA Rungs -->
+      <path d="M10,25 L90,25" stroke="currentColor" opacity="0.05" stroke-width="2"/>
+      <path d="M10,75 L90,75" stroke="currentColor" opacity="0.05" stroke-width="2"/>
+      <path d="M10,125 L90,125" stroke="currentColor" opacity="0.05" stroke-width="2"/>
+      <path d="M10,175 L90,175" stroke="currentColor" opacity="0.05" stroke-width="2"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#dna)"/>
+</svg>

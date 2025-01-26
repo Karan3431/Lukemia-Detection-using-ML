@@ -1,263 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>About Us - Leukemia Detection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #3d3d73 0%, #e6f3ff 100%);
+        .about-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            min-height: 50vh; /* Reduced from 60vh */
             display: flex;
-            justify-content: center;
             align-items: center;
-            min-height: 50vh;
-            color: #333;
-            padding-top: 100px;  
-        }
-
-        #aboutContainer {
-            max-width: 1200px;
-            margin: 1rem auto;
-            padding: 1rem 2rem;
-        }
-
-        .about-header {
-            background: linear-gradient(135deg, rgba(208, 201, 201, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
-            padding: 4rem 2rem;
             position: relative;
-            overflow: hidden;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
-        .about-header::before {
-            content: '';
-            position: absolute;
-            top: 0%;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('images/pattern.svg') center/cover;
-            opacity: 0.05;
-            z-index: 0;
-        }
-
-        .about-header h1 {
-            color: #004aad;
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-            animation: fadeInDown 1s ease;
-        }
-
-        .about-header h1::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 5px;
-            background: linear-gradient(90deg, #004aad 0%, #0099cc 100%);
-            margin: 1rem auto;
-            border-radius: 3px;
-        }
-
-        .about-header p {
-            font-size: 1.25rem;
-            color: #554c4c;
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            animation: fadeInUp 1s ease 0.2s;
-            animation-fill-mode: both;
+            padding: 6rem 0 3rem; /* Adjusted padding */
         }
 
         .about-content {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+        }
+
+        .about-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            color: white;
+        }
+
+        .about-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .about-hero h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .about-sections {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s ease 0.4s forwards;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            padding: 4rem 0;
+            background: var(--background);
         }
 
         .about-section {
-            background: rgba(233, 230, 230, 0.95);
-            border: 1px solid rgba(74, 144, 226, 0.08);
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 4px 10px rgba(0, 74, 173, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #004aad, #0099cc);
-            transform: scaleX(0);
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
-            transform-origin: left;
         }
 
         .about-section:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 74, 173, 0.12);
         }
 
-        .about-section:hover::before {
-            transform: scaleX(1);
-        }
-
-        .about-section h2 {
-            color: #004aad;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
+        .section-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 12px;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
         }
 
-        .about-section i {
-            font-size: 2rem;
-            background: linear-gradient(135deg, #004aad 0%, #0099cc 100%);
+        .section-icon i {
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .achievements-section {
+            background: var(--gray-light);
+            padding: 4rem 0;
+        }
+
+        .achievement-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Changed from 3 to 4 columns */
+            gap: 1.5rem;
+        }
+
+        .achievement-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .achievement-number {
+            font-size: 2.5rem; /* Reduced from 3rem */
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            transition: transform 0.3s ease;
+            margin-bottom: 0.5rem;
         }
 
-        .about-section:hover i {
-            transform: rotateY(180deg);
+        .timeline-section {
+            padding: 4rem 0;
+            background: white;
         }
 
-        .about-section p {
-            color: #666;
-            line-height: 1.8;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
+        .timeline {
+            max-width: 800px;
+            margin: 2rem auto;
+            position: relative;
         }
 
-        nav {
-            background-color: #312062;
-            padding: 20px;
-            text-align:justify;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-        nav a.spaced-link {
-            margin-right: 600px; 
-            margin-left: 100px;
-            font-size: x-large;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--primary);
         }
 
-        nav a {
-            color: white;
-            margin: 0 30px;
-            text-decoration: none;
-            font-size: 1.2rem;
+        .timeline-item {
+            margin: 2rem 0;
+            position: relative;
+            width: 50%;
+            padding: 0 2rem;
         }
 
-        nav a:hover {
-            text-decoration: underline;
+        .timeline-item:nth-child(odd) {
+            left: 0;
         }
 
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .timeline-item:nth-child(even) {
+            left: 50%;
         }
 
         @media (max-width: 768px) {
-            .about-header {
-                padding: 3rem 1rem;
+            .about-sections {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem;
             }
 
-            .about-header h1 {
-                font-size: 2.5rem;
+            .achievement-cards {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .about-content {
-                padding: 0 1rem;
-                gap: 1.5rem;
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 2rem;
+            }
+
+            .about-hero h1 {
+                font-size: 2.25rem;
             }
         }
     </style>
 </head>
-
 <body>
-    <nav>
-        <a href="index.html" class="spaced-link">Lukemia Detection</a>
-        <a href="about.html">About</a>
-        <a href="detect.html">Detect</a>
-        <a href="team.html">Team</a>
-        <a href="contact.html">Contact Us</a>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/icons/microscope.svg" alt="Microscope" class="logo-icon">
+                <span>LeukemiaDetect</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html" class="active">About</a>
+                <a href="detect.html">Detection</a>
+                <a href="team.html">Team</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
     </nav>
-    <div id="aboutContainer">
-        <div class="about-header">
-            <h1>About Us</h1>
-            <p>We are pioneering AI-powered Lukemia detection to revolutionize healthcare diagnostics.</p>
-        </div>
 
-        <div class="about-content">
-            
-            <div class="about-section">
-                <h2><i class="fas fa-handshake"></i> Technologies Used</h2>
-                <p>Our platform integrates advanced AI models such as CNN, EfficientNet, and YOLO, combined with traditional feature extraction techniques like HOG and LBP.</p>
-            </div>
-
-            <div class="about-section">
-                <h2><i class="fas fa-handshake"></i> Core Values</h2>
-                <p>Innovation, reliability, and patient-centric solutions drive everything we do.</p>
-            </div>
-            
-            <div class="about-section">
-                <h2><i class="fas fa-handshake"></i> Impact</h2>
-                <p>By enhancing the efficiency of leukemia detection in blood smear images, we aim to save lives and revolutionize healthcare diagnostics.</p>
-            </div>
-            <div class="about-section">
-                <h2><i class="fas fa-mission"></i> Mission</h2>
-                <p>We are a team of researchers and developers committed to advancing leukemia detection using cutting-edge AI technology.</p>
-            </div>
-            <div class="about-section">
-                <h2><i class="fas fa-vision"></i> Vision</h2>
-                <p>To become the global leader in AI-powered medical imaging diagnostics, setting new standards in healthcare technology.</p>
-            </div>
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <h1>Revolutionizing Healthcare</h1>
+            <p>Combining cutting-edge AI technology with medical expertise to transform leukemia detection and improve patient outcomes worldwide.</p>
         </div>
+    </section>
+
+    <div class="about-content">
+        <section class="about-sections">
+            <div class="about-section">
+                <div class="section-icon">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <h2>Our Mission</h2>
+                <p>To revolutionize leukemia detection through innovative AI technology, making early diagnosis more accessible and accurate for healthcare providers worldwide.</p>
+            </div>
+            <div class="about-section">
+                <div class="section-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h2>Our Vision</h2>
+                <p>To become the global leader in AI-powered medical diagnostics, setting new standards for accuracy and efficiency in leukemia detection.</p>
+            </div>
+        </section>
+
+        <section class="achievements-section">
+            <div class="section-title">
+                <h2>Our Impact</h2>
+                <p>Making a difference in healthcare through innovation</p>
+            </div>
+            <div class="achievement-cards">
+                <div class="achievement-card">
+                    <div class="achievement-number">99.8%</div>
+                    <h3>Accuracy</h3>
+                    <p>Detection rate</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">50K+</div>
+                    <h3>Analyses</h3>
+                    <p>Completed</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">100+</div>
+                    <h3>Partners</h3>
+                    <p>Worldwide</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">24/7</div>
+                    <h3>Support</h3>
+                    <p>Available</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="section-title">
+                <h2>Our Journey</h2>
+                <p>Milestones in our mission to transform healthcare</p>
+            </div>
+            <div class="timeline">
+                <!-- Add timeline items as needed -->
+            </div>
+        </section>
     </div>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script>
+        // Add smooth scroll animation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
-
 </html>

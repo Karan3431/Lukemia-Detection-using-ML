@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - Bone Fracture Detection</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 60px 0 0 0;
+            background: linear-gradient(135deg, #f4f4f9 0%, #e6f3ff 100%);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        nav {
+            background-color: #312062;
+            padding: 20px;
+            text-align:justify;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        nav a.spaced-link {
+            margin-right: 600px; 
+            margin-left: 100px;
+            font-size: x-large;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight:550;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 30px;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .feature-page-header {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+            padding: 3rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .feature-page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('images/pattern.svg') center/cover;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-content h1 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        .header-content p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            animation: fadeInUp 1s ease 0.3s;
+            animation-fill-mode: both;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: left;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            color: rgb(45, 65, 157);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: rotateY(180deg);
+        }
+
+        .tech-showcase {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+            color: white;
+            text-align: center;
+        }
+
+        .tech-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tech-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .feature-card {
+            width: 280px;
+            background: #e2dbdb;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            perspective: 1000px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="index.html" class="spaced-link">Lukemia Detection</a>
+        <a href="about.html">About</a>
+        <a href="detect.html">Detect</a>
+        <a href="team.html">Team</a>
+        <a href="contact.html">Contact Us</a>
+    </nav>
+    
+    <div class="feature-page-header">
+        <div class="header-content">
+            <h1>Powerful Features</h1>
+            <p>Experience state-of-the-art Lukemia detection powered by advanced AI technology</p>
+        </div>
+    </div>
+
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-brain"></i>
+            </div>
+            <h3>Advanced AI Detection</h3>
+            <p>Utilizing YOLOv8 architecture for precise and rapid fracture identification with up to 90.8% accuracy.</p>
+            <img src="images/confusion_matrix_normalized.png" alt="Alok Kumar">
+
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-bolt"></i>
+            </div>
+            <h3>Real-Time Processing</h3>
+            <p>Get instant results with our optimized processing pipeline, delivering analysis in under 2 seconds.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>High Accuracy</h3>
+            <p>Achieve 99.8% accuracy in fracture detection through advanced machine learning algorithms.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Secure Processing</h3>
+            <p>End-to-end encryption and secure data handling ensure your medical images are protected.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-user-md"></i>
+            </div>
+            <h3>Medical Integration</h3>
+            <p>Seamlessly integrate with existing medical systems and workflows for enhanced efficiency.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3>Easy Access</h3>
+            <p>Access the system from any device with our responsive web interface designed for healthcare professionals.</p>
+        </div>
+    </div>
+
+    <div class="tech-showcase">
+        <div class="tech-content">
+            <h2>Technology That Powers Us</h2>
+            <p>Built with cutting-edge AI and medical imaging technology</p>
+            
+            <div class="tech-stats">
+                <div class="stat-card">
+                    <div class="stat-number">99.8%</div>
+                    <p>Detection Accuracy</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2s</div>
+                    <p>Average Processing Time</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <p>System Availability</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add animation to feature cards on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            observer.observe(card);
+        });
+    </script>
+</body>
+
+</html>

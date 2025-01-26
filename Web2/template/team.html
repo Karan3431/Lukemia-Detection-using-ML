@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+            padding-top: 50px; 
+        }
+#teamContainer {
+    padding: 50px 20px;
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    text-align: center;
+}
+
+.team-header h1 {
+    font-size: 2.5rem;
+    color: #312062;
+    margin-bottom: 10px;
+}
+
+.team-header p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.team-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    background-color: #f9f6f6;
+}
+
+.team-member {
+    width: 280px;
+    background: #e2dbdb;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    perspective: 1000px;
+}
+
+.team-member:hover {
+    transform: translateY(-15px) rotateX(10deg);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.member-image img {
+    width: 100%;
+    height: 200px;
+    object-fit:fill;
+}
+
+.member-info {
+    padding: 20px;
+    text-align: left;
+}
+
+.member-info h3 {
+    font-size: 1.3rem;
+    color: #312062;
+    margin-bottom: 5px;
+}
+
+.member-role {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.member-info p {
+    font-size: 0.95rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    color: #312062;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #ff6f61;
+}
+
+        @media (max-width: 1200px) {
+            .team-grid {
+                grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .team-grid {
+                grid-template-columns: 1fr; /* 1 card per row */
+            }
+        }
+
+        nav {
+            background-color: #312062;
+            padding: 20px;
+            text-align:justify;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        nav a.spaced-link {
+            margin-right: 600px; 
+            margin-left: 100px;
+            font-size: x-large;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 30px;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="index.html" class="spaced-link">Lukemia Detection</a>
+        <a href="about.html">About</a>
+        <a href="detect.html">Detect</a>
+        <a href="team.html">Team</a>
+        <a href="contact.html">Contact Us</a>
+    </nav>
+    <div id="teamContainer">
+        <div class="team-header">
+            <h1>Our Team</h1>
+            <p>Meet the dedicated professionals revolutionizing leukemia detection through cutting-edge AI technology.</p>
+        </div>
+    
+        <div class="team-grid">
+            <!-- Team Member 1 -->
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="images/member1.jpg" alt="Alok Kumar">
+                </div>
+                <div class="member-info">
+                    <h3>Alok Kumar</h3>
+                    <div class="member-role">Full Stack Dev</div>
+                    <p>Lead full-stack developer with expertise in MERN stack and scalable web applications.</p>
+                    <div class="social-links">
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Team Member 2 -->
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="images/member5.jpg" alt="Karan Singh">
+                </div>
+                <div class="member-info">
+                    <h3>Karan Singh</h3>
+                    <div class="member-role">ML Engineer</div>
+                    <p>AI/ML expert specializing in YOLOv8, medical image processing, and optimization.</p>
+                    <div class="social-links">
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Add more team members as needed -->
+        </div>
+    </div>
+
+    <!-- Add Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</body>
+
+</html>

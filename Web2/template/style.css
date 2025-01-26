@@ -1,0 +1,134 @@
+/* Reset and Fonts */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+}
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Navbar */
+.navbar {
+    background: #4CAF50;
+    color: #fff;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar .logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+.navbar .logo span {
+    color: #b58844;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+.nav-links li a.active {
+    text-decoration: underline;
+}
+.btn-primary {
+    background: #FF9800;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4rem 0;
+    background: #f3f4f6;
+}
+.hero-content {
+    max-width: 600px;
+}
+.hero-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+.hero-content p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+.hero-image img {
+    max-width: 100%;
+}
+
+.features {
+    padding: 4rem 0;
+    text-align: center;
+}
+.features-grid {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.feature img {
+    width: 60px;
+    margin-bottom: 1rem;
+}
+.feature h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Call to Action */
+.cta {
+    background: #4CAF50;
+    color: #fff;
+    text-align: center;
+    padding: 3rem 0;
+}
+.cta h2 {
+    margin-bottom: 1rem;
+}
+.cta .btn-secondary {
+    background: #FF9800;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+.social-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.social-links li a img {
+    width: 20px;
+}
